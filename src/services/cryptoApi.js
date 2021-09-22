@@ -21,7 +21,7 @@ export const cryptoApi = createApi({
   endpoints: (builder) => ({
     // if we just make a request with /exchanges then we need to pass the headers also thats why we create a const above name createRequest in which we give url and headers
     getCryptos: builder.query({
-        query: () => createRequest('/coins')
+        query: (count) => createRequest(`/coins?limit=${count}`)
     })
   }),
 });
