@@ -21,6 +21,8 @@ a{
   text-decoration: none;
 }
 
+
+
 .app{
   display: flex;
   overflow: hidden;
@@ -84,7 +86,36 @@ a{
   padding: 7px 0 15px 0;
 }
 
+
 /************* crypto card styles End  **************/
+
+
+
+/************* coin details styles start  **************/
+
+.coin__title{
+  text-align: center;
+}
+
+.coin__title h2{
+  font-size:30px;
+  margin-bottom: 1rem;
+}
+
+/************* coin details styles End  **************/
+
+
+/************* news cards styles  **************/
+
+.news__card a{
+  color: #000;
+}
+
+
+
+
+
+
 
 
 .menu-control-container{

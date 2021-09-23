@@ -26,21 +26,27 @@ export const cryptoApi = createApi({
 
 
     //end point to get coin details
-    getCryptos: builder.query({
-      query: (count) => createRequest(`/coins?limit=${count}`),
+    getCryptoDetails: builder.query({
+      query: (coinId) => createRequest(`/coin/${coinId}`),
     }),
   }),
 });
 
+
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetCryptosQuery } = cryptoApi;
+export const { useGetCryptosQuery, useGetCryptoDetailsQuery } = cryptoApi;
 
-var options = {
-  method: "GET",
-  url: "https://coinranking1.p.rapidapi.com/exchanges",
-  headers: {
-    "x-rapidapi-host": "coinranking1.p.rapidapi.com",
-    "x-rapidapi-key": "undefined",
-  },
-};
+
+
+
+
+
+// var options = {
+//   method: "GET",
+//   url: "https://coinranking1.p.rapidapi.com/exchanges",
+//   headers: {
+//     "x-rapidapi-host": "coinranking1.p.rapidapi.com",
+//     "x-rapidapi-key": "undefined",
+//   },
+// };
