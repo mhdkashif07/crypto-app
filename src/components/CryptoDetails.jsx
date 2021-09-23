@@ -1,9 +1,11 @@
-import React from 'react'
+import React from 'react';
+import { useParams } from 'react-router-dom'
 
 const CryptoDetails = () => {
+    const { coinId } = useParams();
     return (
         <div>
-            <h2>Crypto Details</h2>
+            <h2>Crypto Details {coinId}</h2>
         </div>
     )
 }

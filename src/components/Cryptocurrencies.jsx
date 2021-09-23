@@ -1,6 +1,7 @@
 import { Grid } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import { useGetCryptosQuery } from '../services/cryptoApi';
+import { Link } from 'react-router-dom';
 
 const Cryptocurrencies = ({simplified}) => {
     const count = simplified ? 10 : 100
@@ -29,7 +30,9 @@ const Cryptocurrencies = ({simplified}) => {
                 
                 <Grid container spacing={4}>
                     {cryptos?.map((crypto) => (
+                     
                          <Grid item xs={6} sm={6} md={3} lg={3} xl={3} key={crypto.id}>
+                                <Link to={`/crypto/${crypto.id}`}>
                          <div className="card">
                              <div className="card__title">
                                  <div className="card__name"> <span className="card__rank">{crypto.rank}</span>.{crypto.name}</div>
@@ -41,7 +44,9 @@ const Cryptocurrencies = ({simplified}) => {
                                  <p className="card__daily">Daily Change:</p>
                              </div>
                          </div>
+                         </Link>
                      </Grid>
+                     
                     )) }
                 </Grid>
             </div>
