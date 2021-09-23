@@ -2,6 +2,7 @@ import { Grid } from '@mui/material';
 import React from 'react';
 import { Title, Button, Cryptocurrencies, News } from './index'
 import millify from 'millify';
+import { Link } from 'react-router-dom';
 
 import { useGetCryptosQuery } from '../services/cryptoApi';
 
@@ -47,14 +48,14 @@ const HomePage = () => {
 
             <div className="home-heading-container">
                 <Title text="Top 10 Cryptos In The World"/>
-                <Button text="Show more" />
+                <Link to="/cryptocurrencies">Show more</Link>
             </div>
 
             <Cryptocurrencies simplified />
 
             <div className="home-heading-container">
-                <Title text="Top 10 Cryptos In The World"/>
-                <Button text="Show more" />
+                <Title text="News about cryptocurrencies"/>
+                <Link to="/news">Show more</Link>
             </div>
 
             <News />

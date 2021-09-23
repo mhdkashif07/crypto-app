@@ -374,6 +374,7 @@ width: 70%;
   justify-content: space-between;
   align-items: center;
   margin-top: 40px;
+  margin-bottom: 20px;
 }
 .show-more{
   margin-top: 0px !important;
