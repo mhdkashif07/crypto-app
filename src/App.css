@@ -111,11 +111,15 @@ a{
   color: #000;
 }
 
+.avatar{
+  display: flex;
+  align-items: center;
+}
 
-
-
-
-
+.search__news{
+  width: 200px;
+  height: 50px;
+}
 
 
 .menu-control-container{
@@ -373,6 +377,7 @@ width: 70%;
 .provider-container{
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .provider-name{
   margin-left: 10px;
