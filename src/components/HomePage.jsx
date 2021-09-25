@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material';
 import React from 'react';
-import { Title, Button, Cryptocurrencies, News } from './index'
+import { Title, Loader, Cryptocurrencies, News } from './index'
 import millify from 'millify';
 import { Link } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ const HomePage = () => {
     const globalStats = data?.data?.stats;
     
 
-    if(isFetching) return <h2>Loading....</h2>
+    if(isFetching) return <Loader />
 
     console.log(data);
     return (
