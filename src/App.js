@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import { Switch, Link, Route } from "react-router-dom";
+import { Layout, Typography, Space } from 'antd';
 import { Navbar, HomePage, Exchanges, Cryptocurrencies, CryptoDetails, News } from "./components";
 
 function App() {
@@ -31,8 +32,16 @@ function App() {
         </div>
 
         <div className="footer">
-          <h2>footer section</h2>
-        </div>
+       
+        <Typography.Title  level={5} style={{color: 'white', textAlign: 'center'}}>
+                    <Space>
+                        <Link to="/">Home</Link>
+                        <Link to="/exchanges">Exchanges</Link>
+                        <Link to="/news">News</Link>
+                    </Space><br/>
+                    <p>Cryptoverse @Developed By <a href="https://github.com/dex-coder" target="_blank">Dex Coder</a></p>
+                </Typography.Title>
+      </div>
       </div>
     </div>
   );
