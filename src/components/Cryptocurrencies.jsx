@@ -2,6 +2,8 @@ import { Grid } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import { useGetCryptosQuery } from '../services/cryptoApi';
 import { Link } from 'react-router-dom';
+import { Card, Row, Col, Input } from 'antd';
+import millify from 'millify';
 
 const Cryptocurrencies = ({simplified}) => {
     const count = simplified ? 10 : 100
@@ -19,38 +21,26 @@ const Cryptocurrencies = ({simplified}) => {
 
     if(isFetching) return <h2>loading...</h2>
     return (
-        <div className="crypto__container">
-            {!simplified && (
-                <div className="search-crypto">
-                <input type="text" placeholder="search crypto" onChange={(e) => setSearchTerm(e.target.value)} />
-                
-            </div>
-            )}
-            <div className="cards__list">
-                
-                <Grid container spacing={4}>
-                    {cryptos?.map((crypto) => (
-                     
-                         <Grid item xs={6} sm={6} md={3} lg={3} xl={3} key={crypto.id}>
-                                <Link to={`/crypto/${crypto.id}`}>
-                         <div className="card">
-                             <div className="card__title">
-                                 <div className="card__name"> <span className="card__rank">{crypto.rank}</span>.{crypto.name}</div>
-                                 <div className="card__icon">icon</div>
-                             </div>
-                             <div className="card__details">
-                                 <p className="card__price">Price</p>
-                                 <p className="card__market">Market Cap:</p>
-                                 <p className="card__daily">Daily Change:</p>
-                             </div>
-                         </div>
-                         </Link>
-                     </Grid>
-                     
-                    )) }
-                </Grid>
-            </div>
+        <>
+              {!simplified && (
+        <div className="search-crypto">
+          <Input placeholder="Search Cryptocurrency" onChange={(e) => setSearchTerm(e.target.value.toLowerCase())} />
         </div>
+      )}
+      <Row gutter={[32, 32]} className="crypto-card-container">
+        {cryptos?.map((currency) => (
+          <Col xs={24} sm={12} lg={6} className="crypto-card" key={currency.id}>
+            <Link key={currency.id} to={`/crypto/${currency.id}`}>
+              <Card title={`${currency.rank}. ${currency.name}`} extra={<img className="crypto-image" src={currency.iconUrl} />} hoverable>
+                <p>Price: {millify(currency.price)}</p>
+                <p>Market Cap: {millify(currency.marketCap)}</p>
+                <p>Daily Change: {currency.change}%</p>
+              </Card>
+            </Link>
+          </Col>
+        ))}
+      </Row>
+        </>
     )
 }
 

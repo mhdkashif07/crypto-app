@@ -1,67 +1,44 @@
-import { Grid } from '@mui/material';
 import React from 'react';
-import { Title, Loader, Cryptocurrencies, News } from './index'
 import millify from 'millify';
+import { Typography, Row, Col, Statistic } from 'antd';
 import { Link } from 'react-router-dom';
 
 import { useGetCryptosQuery } from '../services/cryptoApi';
+import Cryptocurrencies from './Cryptocurrencies';
+import News from './News';
+import Loader from './Loader';
 
-const HomePage = () => {
-    const { data, isFetching } = useGetCryptosQuery(10);
-    const globalStats = data?.data?.stats;
-    
+const { Title } = Typography;
 
-    if(isFetching) return <Loader />
+const Homepage = () => {
+  const { data, isFetching } = useGetCryptosQuery(10);
+  const globalStats = data?.data?.stats;
 
-    console.log(data);
-    return (
-        <div className="home__section">
-            <Title text="Global Crypto Stats"/>
-            <div className="global__stats">
-                <Grid container spacing={5}>
-                    <Grid item xs={5} sm={5} md={5} lg={5} xl={5}>
-                        <h4>Total Cryptocurrencies</h4>
-                        <h3>{globalStats.total}</h3>
-                    </Grid>
-                    <Grid item xs={5} sm={5} md={5} lg={5} xl={5}>
-                        <h4>Total Exchanges</h4>
-                        <h3>{millify(globalStats.totalExchanges)}</h3>
-                    </Grid>
-                    <Grid item xs={5} sm={5} md={5} lg={5} xl={5}>
-                        <h4>Total Market Cap</h4>
-                        <h3>{millify(globalStats.totalMarketCap)}</h3>
-                    </Grid>
-                    <Grid item xs={5} sm={5} md={5} lg={5} xl={5}>
-                        <h4>Total 24h Volume</h4>
-                        <h3>{millify(globalStats.total24hVolume)}</h3>
-                    </Grid>
-                    <Grid item xs={5} sm={5} md={5} lg={5} xl={5}>
-                        <h4>Total Markets</h4>
-                        <h3>{millify(globalStats.totalMarkets)}</h3>
-                    </Grid>
-                    {/* <Grid item xs={5} sm={5} md={5} lg={5} xl={5}>
-                        <h4>Total Cryptocurrencies</h4>
-                        <h3>12,194</h3>
-                    </Grid> */}
-                </Grid>
-            </div>
+  if (isFetching) return <Loader />;
 
-            <div className="home-heading-container">
-                <Title text="Top 10 Cryptos In The World"/>
-                <Link to="/cryptocurrencies">Show more</Link>
-            </div>
+  return (
+    <>
+      <Title level={2} className="heading">Global Crypto Stats</Title>
+      <Row gutter={[32, 32]}>
+        <Col span={12}><Statistic title="Total Cryptocurrencies" value={globalStats.total} /></Col>
+        <Col span={12}><Statistic title="Total Exchanges" value={millify(globalStats.totalExchanges)} /></Col>
+        <Col span={12}><Statistic title="Total Market Cap:" value={`$${millify(globalStats.totalMarketCap)}`} /></Col>
+        <Col span={12}><Statistic title="Total 24h Volume" value={`$${millify(globalStats.total24hVolume)}`} /></Col>
+        <Col span={12}><Statistic title="Total Cryptocurrencies" value={globalStats.total} /></Col>
+        <Col span={12}><Statistic title="Total Markets" value={millify(globalStats.totalMarkets)} /></Col>
+      </Row>
+      <div className="home-heading-container">
+        <Title level={2} className="home-title">Top 10 Cryptos In The World</Title>
+        <Title level={3} className="show-more"><Link to="/cryptocurrencies">Show more</Link></Title>
+      </div>
+      <Cryptocurrencies simplified />
+      <div className="home-heading-container">
+        <Title level={2} className="home-title">Latest Crypto News</Title>
+        <Title level={3}><Link to="/news">Show more</Link></Title>
+      </div>
+      <News simplified />
+    </>
+  );
+};
 
-            <Cryptocurrencies simplified />
-
-            <div className="home-heading-container">
-                <Title text="News about cryptocurrencies"/>
-                <Link to="/news">Show more</Link>
-            </div>
-
-            <News simplified />
-
-        </div>
-    )
-}
-
-export default HomePage
+export default Homepage;
