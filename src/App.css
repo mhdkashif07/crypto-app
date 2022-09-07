@@ -23,6 +23,15 @@ a:hover{
   overflow: hidden;
 }
 
+
+.icon__style svg{
+  color: #fff;
+}
+
+.icon__style svg:hover{
+  color: gray;
+}
+
 .navbar{
   flex: 0.2;
   background-color: rgb(0, 21, 41);

@@ -6,7 +6,7 @@ import { Card, Row, Col, Input } from 'antd';
 import millify from 'millify';
 
 const Cryptocurrencies = ({simplified}) => {
-    const count = simplified ? 10 : 100
+    const count = simplified ? 15 : 99
     const { data: cryptoList, isFetching } = useGetCryptosQuery(count);
     const [cryptos, setCryptos] = React.useState([]);
     const [searchTerm, setSearchTerm] = useState('')
@@ -30,7 +30,7 @@ const Cryptocurrencies = ({simplified}) => {
       <Row gutter={[32, 32]} className="crypto-card-container">
         {cryptos?.map((currency) => (
           <Col xs={24} sm={12} lg={6} className="crypto-card" key={currency.id}>
-            <Link key={currency.id} to={`/crypto/${currency.id}`}>
+            <Link key={currency.uuid} to={`/crypto/${currency.uuid}`}>
               <Card title={`${currency.rank}. ${currency.name}`} extra={<img className="crypto-image" src={currency.iconUrl} />} hoverable>
                 <p>Price: {millify(currency.price)}</p>
                 <p>Market Cap: {millify(currency.marketCap)}</p>
